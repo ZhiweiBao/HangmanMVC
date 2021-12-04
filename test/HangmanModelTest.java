@@ -1,6 +1,5 @@
 import static org.junit.Assert.*;
 
-import hangman.Hangman;
 import hangman.model.HangmanModel;
 import hangman.model.HangmanModelImpl;
 import java.io.FileNotFoundException;
@@ -8,6 +7,9 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * This is a test class for Hangman model.
+ */
 public class HangmanModelTest {
 
   private HangmanModel hangmanModel;
@@ -125,6 +127,9 @@ public class HangmanModelTest {
     assertEquals(6, hangmanModel.getHealth());
   }
 
+  /**
+   * Test the method gameOver()
+   */
   @Test
   public void gameOver() {
     assertFalse(hangmanModel.gameOver());
@@ -193,7 +198,7 @@ public class HangmanModelTest {
     hangmanModel.guess("f");
     hangmanModel.guess("s");
 
-    assertEquals(8,hangmanModel.getHintByRemovingWrongOption().size());
+    assertEquals(8, hangmanModel.getHintByRemovingWrongOption().size());
     assertEquals(14, hangmanModel.getWrongLetterList().size());
   }
 
@@ -219,7 +224,7 @@ public class HangmanModelTest {
       fail("An exception should be thrown!");
     } catch (Exception e) {
     }
-    assertEquals(11,hangmanModel.getHintByRemovingWrongOption().size());
+    assertEquals(11, hangmanModel.getHintByRemovingWrongOption().size());
     assertEquals(11, hangmanModel.getWrongLetterList().size());
   }
 }

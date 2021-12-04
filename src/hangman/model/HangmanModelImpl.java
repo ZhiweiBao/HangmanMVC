@@ -2,7 +2,6 @@ package hangman.model;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,10 +24,21 @@ public class HangmanModelImpl implements HangmanModel {
   private boolean gameOver;
   private boolean win;
 
+  /**
+   * This a constructor with no params, it will get word list from default file
+   *
+   * @throws FileNotFoundException if the file is not found
+   */
   public HangmanModelImpl() throws FileNotFoundException {
     this("Wordlist.json");
   }
 
+  /**
+   * This a constructor with one param fileName, it will get word list from the given file
+   *
+   * @param fileName the name of the given file
+   * @throws FileNotFoundException if the file is not found
+   */
   public HangmanModelImpl(String fileName) throws FileNotFoundException {
     String rootPath = System.getProperty("user.dir");
     String filePath = rootPath + "/res/" + fileName;
@@ -44,6 +54,11 @@ public class HangmanModelImpl implements HangmanModel {
     initializeGame();
   }
 
+  /**
+   * This is a private method to initialize the game by the given word list. It will choose the word
+   * from the wordList, record the category, set the current word by then length of the chosen word,
+   * initialize the wrongLetterList, initialize the health to 8, set gameOver and win to false.
+   */
   private void initializeGame() {
     String[] categories = this.wordList.keySet().toArray(new String[0]);
     Random random = new Random();
@@ -68,7 +83,7 @@ public class HangmanModelImpl implements HangmanModel {
    * @throws IllegalArgumentException if the input is not a letter or a word.
    */
   @Override
-  public void guess(String str) throws IllegalArgumentException, IllegalStateException {
+  public void guess(String str) throws IllegalStateException {
     if (gameOver) {
       throw new IllegalStateException("Game over!");
     }
@@ -78,7 +93,6 @@ public class HangmanModelImpl implements HangmanModel {
     }
     str = str.toLowerCase();
     if (!str.matches("[a-z]+")) {
-//      throw new IllegalArgumentException("This is not a word or letter!");
       return;
     }
     if (str.length() == 1) { // Guess by one letter

@@ -4,20 +4,39 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GraphicsEnvironment;
-import java.awt.Point;
 import java.awt.RenderingHints;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
 
+/**
+ * This is a class to draw the hangman in a panel
+ */
 public class HangmanPanel extends JPanel {
 
   private final List<Color> colorList;
 
-  public HangmanPanel(List<Color> colorList) {
-    this.colorList = colorList;
+  /**
+   * This is a constructor to initialize the colorList of hangman, the appearance of hangman depends
+   * on the colorList, and the colorList depends on the health of the player
+   *
+   * @param health the health of the player
+   */
+  public HangmanPanel(int health) {
+    this.colorList = new ArrayList<>();
+    for (int i = 0; i < 8; i++) {
+      if (i < 8 - health) {
+        colorList.add(Color.BLACK);
+      } else {
+        colorList.add(Color.LIGHT_GRAY);
+      }
+    }
   }
 
+  /**
+   * This is a method to draw the hangman by colorList
+   * @param g the graphics will be used to draw the hangman
+   */
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
@@ -70,6 +89,6 @@ public class HangmanPanel extends JPanel {
     g2D.drawLine(pointX + lineLength + eyeDist, height - lineLength,
         pointX - lineLength + eyeDist, height + lineLength);
     // mouth
-    g2D.drawLine(pointX - eyeDist, height+20, pointX + eyeDist, height+20);
+    g2D.drawLine(pointX - eyeDist, height + 20, pointX + eyeDist, height + 20);
   }
 }
