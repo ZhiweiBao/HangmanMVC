@@ -1,0 +1,1 @@
+The directory "res" should be at the same level of Hangman.jar
