@@ -35,6 +35,7 @@ public class HangmanControllerImpl implements HangmanController {
    *
    * @param input the input string from the player
    */
+  @Override
   public void guess(String input) {
     model.guess(input);
     view.setWord(model.getGameState());
@@ -46,6 +47,7 @@ public class HangmanControllerImpl implements HangmanController {
    *
    * @return the health
    */
+  @Override
   public int getHealth() {
     return model.getHealth();
   }
@@ -55,6 +57,7 @@ public class HangmanControllerImpl implements HangmanController {
    *
    * @return whether the game is over
    */
+  @Override
   public boolean gameOver() {
     if (model.gameOver()) {
       view.setWord(model.getChosenWord());
@@ -70,6 +73,7 @@ public class HangmanControllerImpl implements HangmanController {
    * @return whether the player wins
    * @throws IllegalStateException when the game is not over.
    */
+  @Override
   public boolean playerWins() throws IllegalStateException {
     if (!model.gameOver()) {
       throw new IllegalStateException("Game is not over!");
@@ -82,6 +86,7 @@ public class HangmanControllerImpl implements HangmanController {
    *
    * @param option the option from the player
    */
+  @Override
   public void getHint(int option) {
     if (option == 0) {
       view.setLabelCategory(model.getHintOfCategory());
@@ -93,6 +98,7 @@ public class HangmanControllerImpl implements HangmanController {
   /**
    * Restart the game by restart the model and restart the view.
    */
+  @Override
   public void restartGame() {
     model.restart();
     view.restart();

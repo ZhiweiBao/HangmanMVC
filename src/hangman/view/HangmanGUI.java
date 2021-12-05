@@ -187,6 +187,7 @@ public class HangmanGUI extends JFrame implements HangmanView {
   /**
    * Restart the game by initialize the view.
    */
+  @Override
   public void restart() {
     this.labelHead.setText("Hangman");
     this.labelHead.setForeground(Color.BLACK);
@@ -209,6 +210,7 @@ public class HangmanGUI extends JFrame implements HangmanView {
    *
    * @param word the current word
    */
+  @Override
   public void setWord(String word) {
     StringBuilder strBuilder = new StringBuilder();
     for (int i = 0; i < word.length(); i++) {
@@ -224,6 +226,7 @@ public class HangmanGUI extends JFrame implements HangmanView {
    *
    * @param health the health of player
    */
+  @Override
   public void drawHangman(int health) {
     this.hangmanPanel.removeAll();
     this.hangmanPanel.add(new HangmanPanel(health));
@@ -256,6 +259,7 @@ public class HangmanGUI extends JFrame implements HangmanView {
    *
    * @param category the category of chosen word
    */
+  @Override
   public void setLabelCategory(String category) {
     this.labelCategory.setText(category);
   }
@@ -265,6 +269,7 @@ public class HangmanGUI extends JFrame implements HangmanView {
    *
    * @param wrongLetters the letters need to be removed.
    */
+  @Override
   public void setBtnByRemovingWrongLetters(List<Character> wrongLetters) {
     for (Character c : wrongLetters) {
       disableBtnByChar(c);
