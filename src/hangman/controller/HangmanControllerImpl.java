@@ -19,9 +19,15 @@ public class HangmanControllerImpl implements HangmanController {
    */
   public HangmanControllerImpl(HangmanModel model, HangmanView view) {
     this.model = model;
-
     this.view = view;
-    this.view.addListeners(this);
+  }
+
+  /**
+   * Start the game
+   */
+  @Override
+  public void playGame() {
+    this.view.show(this);
   }
 
   /**
@@ -33,15 +39,6 @@ public class HangmanControllerImpl implements HangmanController {
     model.guess(input);
     view.setWord(model.getGameState());
     view.drawHangman(model.getHealth());
-  }
-
-  /**
-   * Get the chosen word from the model
-   *
-   * @return the chosen word
-   */
-  public String getChosenWord() {
-    return model.getChosenWord();
   }
 
   /**
@@ -59,7 +56,12 @@ public class HangmanControllerImpl implements HangmanController {
    * @return whether the game is over
    */
   public boolean gameOver() {
-    return model.gameOver();
+    if (model.gameOver()) {
+      view.setWord(model.getChosenWord());
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /**
@@ -93,8 +95,7 @@ public class HangmanControllerImpl implements HangmanController {
    */
   public void restartGame() {
     model.restart();
-    view.setWord(model.getGameState());
-    view.drawHangman(model.getHealth());
     view.restart();
+    view.setWord(model.getGameState());
   }
 }

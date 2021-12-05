@@ -6,18 +6,16 @@ package hangman.controller;
 public interface HangmanController {
 
   /**
+   * Start the game
+   */
+  void playGame();
+
+  /**
    * Get the string from the player, and call the model to guess word by input
    *
    * @param input the input string from the player
    */
   void guess(String input);
-
-  /**
-   * Get the chosen word from the model
-   *
-   * @return the chosen word
-   */
-  String getChosenWord();
 
   /**
    * Get the health from the model

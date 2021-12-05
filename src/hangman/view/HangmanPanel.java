@@ -35,6 +35,7 @@ public class HangmanPanel extends JPanel {
 
   /**
    * This is a method to draw the hangman by colorList
+   *
    * @param g the graphics will be used to draw the hangman
    */
   @Override

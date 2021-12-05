@@ -9,11 +9,12 @@ import java.util.List;
 public interface HangmanView {
 
   /**
-   * Add the listener to the view and give control to the controller
+   * Open the view and give control to the controller
    *
    * @param controller the Hangman controller
    */
-  void addListeners(HangmanController controller);
+  void show(HangmanController controller);
+
 
   /**
    * Restart the game by initialize the view.

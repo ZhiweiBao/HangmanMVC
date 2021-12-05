@@ -64,14 +64,28 @@ public class HangmanGUI extends JFrame implements HangmanView {
   private JLabel labelCategory;
   private JLabel labelHead;
 
-  private int numOfHints;
+  private int[] hintList;
   private final List<JButton> letterBtnList;
+  private HangmanController controller;
 
   /**
    * This is a constructor to initialize the Hangman GUI
    */
   public HangmanGUI() {
     super("Hangman");
+    this.letterBtnList = new ArrayList<>(Arrays.asList(
+        btnA, btnB, btnC, btnD, btnE, btnF,
+        btnG, btnH, btnI, btnJ, btnK, btnL, btnM,
+        btnN, btnO, btnP, btnQ, btnR, btnS, btnT,
+        btnU, btnV, btnW, btnX, btnY, btnZ));
+  }
+
+  /**
+   * Start the game.
+   */
+  @Override
+  public void show(HangmanController controller) {
+    this.controller = controller;
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     int width = 800;
     int height = 650;
@@ -80,44 +94,35 @@ public class HangmanGUI extends JFrame implements HangmanView {
     Point p = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
     this.setBounds(p.x - width / 2, p.y - height / 2, width, height);
     this.setContentPane(mainPanel);
-    this.drawHangman(8);
-    this.letterBtnList = new ArrayList<>(Arrays.asList(
-        btnA, btnB, btnC, btnD, btnE, btnF,
-        btnG, btnH, btnI, btnJ, btnK, btnL, btnM,
-        btnN, btnO, btnP, btnQ, btnR, btnS, btnT,
-        btnU, btnV, btnW, btnX, btnY, btnZ));
 
     this.pack();
+    this.addListeners();
+    controller.restartGame();
     this.setVisible(true);
   }
 
   /**
    * Add the listener to the view and give control to the controller
-   *
-   * @param controller the Hangman controller
    */
-  public void addListeners(HangmanController controller) {
+  private void addListeners() {
     btnRestart.addActionListener(e -> controller.restartGame());
 
-    btnGuessWord.addActionListener(e -> this.clickBtnGuessWord(controller));
+    btnGuessWord.addActionListener(e -> this.clickBtnGuessWord());
 
-    btnGetHints.addActionListener(e -> this.clickBtnHint(controller));
+    btnGetHints.addActionListener(e -> this.clickBtnHint());
 
     for (JButton btn : letterBtnList) {
-      btn.addActionListener(e -> this.clickLetterBtn(controller, btn, btn.getText().toLowerCase()));
+      btn.addActionListener(e -> this.clickLetterBtn(btn, btn.getText().toLowerCase()));
     }
-
-    controller.restartGame();
   }
 
   /**
    * This is a private method to be processed when the Player the letter buttons
    *
-   * @param controller the Hangman controller
-   * @param btn        the button clicked by the player
-   * @param letter     the corresponding letter of the button.
+   * @param btn    the button clicked by the player
+   * @param letter the corresponding letter of the button.
    */
-  private void clickLetterBtn(HangmanController controller, JButton btn, String letter) {
+  private void clickLetterBtn(JButton btn, String letter) {
     if (controller.gameOver()) {
       return;
     }
@@ -125,15 +130,13 @@ public class HangmanGUI extends JFrame implements HangmanView {
     btn.setBackground(Color.LIGHT_GRAY);
     controller.guess(letter);
     enableRadioBtnByHealth(controller.getHealth());
-    processAfterGameOver(controller);
+    processAfterGameOver();
   }
 
   /**
    * This is a private method to be called when the Player click the "Guess word" button
-   *
-   * @param controller the Hangman controller
    */
-  private void clickBtnGuessWord(HangmanController controller) {
+  private void clickBtnGuessWord() {
     if (controller.gameOver()) {
       return;
     }
@@ -146,7 +149,7 @@ public class HangmanGUI extends JFrame implements HangmanView {
     controller.guess(word);
     this.textWord.setText("");
     enableRadioBtnByHealth(controller.getHealth());
-    processAfterGameOver(controller);
+    processAfterGameOver();
   }
 
   /**
@@ -155,30 +158,27 @@ public class HangmanGUI extends JFrame implements HangmanView {
    * @param health the health of the player
    */
   private void enableRadioBtnByHealth(int health) {
-    if (health <= 5 && numOfHints == 2) {
+    if (health <= 5 && Arrays.stream(hintList).sum() == 2) {
       radioBtnCategory.setEnabled(true);
       radioBtnRemoveWrongLetters.setEnabled(true);
-    } else if (health <= 2 && numOfHints >= 1) {
-      if (radioBtnCategory.isSelected()) {
-        radioBtnRemoveWrongLetters.setEnabled(true);
-      } else {
+    } else if (health <= 2 && Arrays.stream(hintList).sum() == 1) {
+      if (hintList[0] == 1) {
         radioBtnCategory.setEnabled(true);
+      } else if (hintList[1] == 1) {
+        radioBtnRemoveWrongLetters.setEnabled(true);
       }
     }
   }
 
   /**
    * This method is called after the game is over.
-   *
-   * @param controller the Hangman controller
    */
-  private void processAfterGameOver(HangmanController controller) {
+  private void processAfterGameOver() {
     if (controller.gameOver()) {
       if (controller.playerWins()) {
         this.labelHead.setText("Congratulations!");
       } else {
         this.labelHead.setText("Game Over");
-        this.setWord(controller.getChosenWord());
         this.labelWord.setForeground(Color.RED);
       }
     }
@@ -191,12 +191,13 @@ public class HangmanGUI extends JFrame implements HangmanView {
     this.labelHead.setText("Hangman");
     this.labelHead.setForeground(Color.BLACK);
     this.labelWord.setForeground(Color.BLACK);
-    numOfHints = 2;
+    hintList = new int[]{1, 1};
     textWord.setText("");
     radioBtnCategory.setSelected(true);
     radioBtnCategory.setEnabled(false);
     radioBtnRemoveWrongLetters.setEnabled(false);
     labelCategory.setText("?????");
+    this.drawHangman(controller.getHealth());
     for (JButton btn : letterBtnList) {
       btn.setEnabled(true);
       btn.setBackground(new Color(67, 140, 242));
@@ -226,15 +227,13 @@ public class HangmanGUI extends JFrame implements HangmanView {
   public void drawHangman(int health) {
     this.hangmanPanel.removeAll();
     this.hangmanPanel.add(new HangmanPanel(health));
-    this.setVisible(true);
+    this.validate();
   }
 
   /**
    * This method is called after the player clicks the button "Hints"
-   *
-   * @param controller the Hangman Controller
    */
-  private void clickBtnHint(HangmanController controller) {
+  private void clickBtnHint() {
     if (controller.gameOver()) {
       return;
     }
@@ -243,12 +242,12 @@ public class HangmanGUI extends JFrame implements HangmanView {
       controller.getHint(0);
       radioBtnCategory.setEnabled(false);
       radioBtnRemoveWrongLetters.setEnabled(false);
-      numOfHints--;
-    } else if (radioBtnRemoveWrongLetters.isSelected() && radioBtnRemoveWrongLetters.isSelected()) {
+      hintList[0] = 0;
+    } else if (radioBtnRemoveWrongLetters.isSelected() && radioBtnRemoveWrongLetters.isEnabled()) {
       controller.getHint(1);
       radioBtnCategory.setEnabled(false);
       radioBtnRemoveWrongLetters.setEnabled(false);
-      numOfHints--;
+      hintList[1] = 0;
     }
   }
 
