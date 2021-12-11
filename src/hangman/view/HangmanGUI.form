@@ -24,6 +24,7 @@
                 </constraints>
                 <properties>
                   <background color="-12350222"/>
+                  <focusPainted value="false"/>
                   <foreground color="-460552"/>
                   <text value="Restart"/>
                 </properties>
@@ -42,6 +43,7 @@
                     </constraints>
                     <properties>
                       <background color="-12350222"/>
+                      <focusPainted value="false"/>
                       <foreground color="-460552"/>
                       <text value="Guess word"/>
                     </properties>
@@ -77,6 +79,7 @@
                 </constraints>
                 <properties>
                   <background color="-12350222"/>
+                  <focusPainted value="false"/>
                   <foreground color="-460552"/>
                   <text value="Hints"/>
                 </properties>
@@ -164,6 +167,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <horizontalTextPosition value="11"/>
               <text value="A"/>
@@ -175,6 +179,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="N"/>
             </properties>
@@ -185,6 +190,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="C"/>
             </properties>
@@ -195,6 +201,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="D"/>
             </properties>
@@ -205,6 +212,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="E"/>
             </properties>
@@ -215,6 +223,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="F"/>
             </properties>
@@ -225,6 +234,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="L"/>
             </properties>
@@ -235,6 +245,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="M"/>
             </properties>
@@ -245,6 +256,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="K"/>
             </properties>
@@ -255,6 +267,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="J"/>
             </properties>
@@ -265,6 +278,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="I"/>
             </properties>
@@ -275,6 +289,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="H"/>
             </properties>
@@ -285,6 +300,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="G"/>
             </properties>
@@ -295,6 +311,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="O"/>
             </properties>
@@ -305,6 +322,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="P"/>
             </properties>
@@ -315,6 +333,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="Q"/>
             </properties>
@@ -325,6 +344,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="R"/>
             </properties>
@@ -335,6 +355,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="S"/>
             </properties>
@@ -345,6 +366,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="T"/>
             </properties>
@@ -355,6 +377,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="U"/>
             </properties>
@@ -365,6 +388,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="V"/>
             </properties>
@@ -375,6 +399,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="W"/>
             </properties>
@@ -385,6 +410,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="X"/>
             </properties>
@@ -395,6 +421,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="Y"/>
             </properties>
@@ -405,6 +432,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="Z"/>
             </properties>
@@ -415,6 +443,7 @@
             </constraints>
             <properties>
               <background color="-12350222"/>
+              <focusPainted value="false"/>
               <foreground color="-460552"/>
               <text value="B"/>
             </properties>

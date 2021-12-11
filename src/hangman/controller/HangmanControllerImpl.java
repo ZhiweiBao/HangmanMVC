@@ -18,6 +18,12 @@ public class HangmanControllerImpl implements HangmanController {
    * @param view  the Hangman view
    */
   public HangmanControllerImpl(HangmanModel model, HangmanView view) {
+    if (model == null) {
+      throw new IllegalArgumentException("Invalid model!");
+    }
+    if (view == null) {
+      throw new IllegalArgumentException("Invalid view!");
+    }
     this.model = model;
     this.view = view;
   }
@@ -27,7 +33,7 @@ public class HangmanControllerImpl implements HangmanController {
    */
   @Override
   public void playGame() {
-    this.view.show(this);
+    this.view.start(this);
   }
 
   /**

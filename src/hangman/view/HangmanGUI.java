@@ -84,7 +84,7 @@ public class HangmanGUI extends JFrame implements HangmanView {
    * Start the game.
    */
   @Override
-  public void show(HangmanController controller) {
+  public void start(HangmanController controller) {
     this.controller = controller;
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     int width = 800;
@@ -94,7 +94,6 @@ public class HangmanGUI extends JFrame implements HangmanView {
     Point p = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
     this.setBounds(p.x - width / 2, p.y - height / 2, width, height);
     this.setContentPane(mainPanel);
-
     this.pack();
     this.addListeners();
     controller.restartGame();

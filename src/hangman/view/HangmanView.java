@@ -13,7 +13,7 @@ public interface HangmanView {
    *
    * @param controller the Hangman controller
    */
-  void show(HangmanController controller);
+  void start(HangmanController controller);
 
 
   /**
